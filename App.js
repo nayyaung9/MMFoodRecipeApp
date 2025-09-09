@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useFonts } from 'expo-font';
+
+import Application from './src/navigation/Application';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  const [isLoad] = useFonts({
+    'PoppinsBold': require("./assets/fonts/Poppins-Bold.ttf"),
+    'PoppinsMedium': require("./assets/fonts/Poppins-Medium.ttf"),
+    'PoppinsRegular': require("./assets/fonts/Poppins-Regular.ttf"),
+    'PoppinsSemiBold': require("./assets/fonts/Poppins-SemiBold.ttf"),
+  });
+
+  if (!isLoad) {
+    return null;
+  }
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <Application />
+    </SafeAreaView>
+  )
+
+}
